@@ -8,7 +8,7 @@ public record PurchaseResponseObject(
 
         UUID purchaseId,
         String description,
-        LocalDate trransactionDate,
+        LocalDate transactionDate,
         BigDecimal originalAmountUsd,
         String targetCurrency,
         BigDecimal exchangeRate,
