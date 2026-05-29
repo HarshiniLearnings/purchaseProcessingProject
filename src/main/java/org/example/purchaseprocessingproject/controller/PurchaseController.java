@@ -1,14 +1,14 @@
-package controller;
+package org.example.purchaseprocessingproject.controller;
 
-import dto.PurchaseRequest;
-import dto.PurchaseResponse;
-import dto.PurchaseResponseObject;
+import org.example.purchaseprocessingproject.dto.PurchaseRequest;
+import org.example.purchaseprocessingproject.dto.PurchaseResponse;
+import org.example.purchaseprocessingproject.dto.PurchaseResponseObject;
 import lombok.RequiredArgsConstructor;
-import model.CurrencyCode;
+import org.example.purchaseprocessingproject.model.CurrencyCode;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.PurchaseService;
+import org.example.purchaseprocessingproject.service.PurchaseService;
 
 import java.util.UUID;
 

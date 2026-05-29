@@ -1,12 +1,14 @@
-package repository;
+package org.example.purchaseprocessingproject.repository;
 
-import model.Purchase;
+import org.example.purchaseprocessingproject.model.Purchase;
+import org.springframework.stereotype.Repository;
 
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Repository
 public class PurchaseRepoImpl implements PurchaseRepository{
 
     private final Map<UUID, Purchase> purchaseMap = new ConcurrentHashMap<>();

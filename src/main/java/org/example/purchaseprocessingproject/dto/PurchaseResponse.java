@@ -1,4 +1,4 @@
-package dto;
+package org.example.purchaseprocessingproject.dto;
 
 import java.util.UUID;
 

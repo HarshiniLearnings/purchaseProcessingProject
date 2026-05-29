@@ -1,4 +1,4 @@
-package model;
+package org.example.purchaseprocessingproject.model;
 
 public enum CurrencyCode {
 

@@ -1,4 +1,4 @@
-package model;
+package org.example.purchaseprocessingproject.model;
 
 import lombok.*;
 

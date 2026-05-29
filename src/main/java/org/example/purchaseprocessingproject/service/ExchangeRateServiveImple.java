@@ -1,10 +1,11 @@
-package service;
+package org.example.purchaseprocessingproject.service;
 
-import client.TreasuryRate;
-import exception.CurrencyConversionException;
+import org.example.purchaseprocessingproject.client.TreasuryRate;
+import org.example.purchaseprocessingproject.exception.CurrencyConversionException;
 import lombok.AllArgsConstructor;
-import model.CurrencyCode;
-import model.ExchangeRate;
+import org.example.purchaseprocessingproject.model.CurrencyCode;
+import org.example.purchaseprocessingproject.model.ExchangeRate;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 @AllArgsConstructor
 public class ExchangeRateServiveImple implements ExchangeRateService{
 

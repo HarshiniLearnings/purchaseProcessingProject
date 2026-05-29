@@ -1,4 +1,4 @@
-package exception;
+package org.example.purchaseprocessingproject.exception;
 
 public class CurrencyConversionException extends RuntimeException{
 

@@ -1,6 +1,6 @@
-package repository;
+package org.example.purchaseprocessingproject.repository;
 
-import model.Purchase;
+import org.example.purchaseprocessingproject.model.Purchase;
 import java.util.Optional;
 import java.util.UUID;
 

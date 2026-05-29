@@ -1,6 +1,6 @@
-package service;
+package org.example.purchaseprocessingproject.service;
 
-import model.CurrencyCode;
+import org.example.purchaseprocessingproject.model.CurrencyCode;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

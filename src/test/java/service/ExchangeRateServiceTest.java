@@ -1,9 +1,10 @@
 package service;
 
-import client.TreasuryRate;
-import exception.CurrencyConversionException;
-import model.CurrencyCode;
-import model.ExchangeRate;
+import org.example.purchaseprocessingproject.client.TreasuryRate;
+import org.example.purchaseprocessingproject.exception.CurrencyConversionException;
+import org.example.purchaseprocessingproject.model.CurrencyCode;
+import org.example.purchaseprocessingproject.model.ExchangeRate;
+import org.example.purchaseprocessingproject.service.ExchangeRateServiveImple;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

@@ -1,8 +1,8 @@
 package service;
 
-import model.Purchase;
+import org.example.purchaseprocessingproject.model.Purchase;
 import org.junit.jupiter.api.Test;
-import repository.PurchaseRepoImpl;
+import org.example.purchaseprocessingproject.repository.PurchaseRepoImpl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

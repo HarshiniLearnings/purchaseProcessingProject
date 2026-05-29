@@ -1,16 +1,21 @@
 package service;
 
 
-import dto.PurchaseRequest;
-import model.CurrencyCode;
-import model.Purchase;
+import org.example.purchaseprocessingproject.dto.PurchaseRequest;
+import org.example.purchaseprocessingproject.dto.PurchaseResponseObject;
+import org.example.purchaseprocessingproject.model.CurrencyCode;
+import org.example.purchaseprocessingproject.model.Purchase;
+import org.example.purchaseprocessingproject.service.ExchangeRateService;
+import org.example.purchaseprocessingproject.service.PurchaseServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import repository.PurchaseRepository;
+import org.example.purchaseprocessingproject.repository.PurchaseRepository;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.UUID;
@@ -18,8 +23,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class PurchaseServiceTest {
@@ -30,7 +34,7 @@ public class PurchaseServiceTest {
     @Mock
     private ExchangeRateService exchangeRateService;
 
-    @Mock
+    @InjectMocks
     private PurchaseServiceImpl service;
 
     @Test
@@ -48,6 +52,7 @@ public class PurchaseServiceTest {
         verify(repository).save(any(Purchase.class));
     }
 
+    @Test
     void testGetPurchase(){
 
         UUID id = UUID.randomUUID();
@@ -65,9 +70,25 @@ public class PurchaseServiceTest {
         when(exchangeRateService.getRate(CurrencyCode.EUR, purchase.getTransactionDate()))
                 .thenReturn(BigDecimal.valueOf(0.9));
 
-        var response = service.getPurchase(id, CurrencyCode.EUR);
+        PurchaseResponseObject response = service.getPurchase(id, CurrencyCode.EUR);
 
-        assertEquals(BigDecimal.valueOf(90.00).setScale(2), response.convertedAmount());
+        BigDecimal expected =
+                BigDecimal.valueOf(45.00)
+                        .setScale(2, RoundingMode.HALF_UP);
+
+        assertEquals(
+                0,
+                expected.compareTo(response.convertedAmount())
+        );
+
+        assertEquals(CurrencyCode.EUR.name(), response.targetCurrency());
+
+        verify(repository, times(1))
+                .findById(id);
+
+        verify(exchangeRateService, times(1))
+                .getRate(CurrencyCode.EUR, purchase.getTransactionDate());
+
 
     }
 }

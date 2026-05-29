@@ -1,19 +1,21 @@
-package service;
+package org.example.purchaseprocessingproject.service;
 
-import dto.PurchaseRequest;
-import dto.PurchaseResponse;
-import dto.PurchaseResponseObject;
-import exception.PurchaseNotFoundException;
+import org.example.purchaseprocessingproject.dto.PurchaseRequest;
+import org.example.purchaseprocessingproject.dto.PurchaseResponse;
+import org.example.purchaseprocessingproject.dto.PurchaseResponseObject;
+import org.example.purchaseprocessingproject.exception.PurchaseNotFoundException;
 import lombok.RequiredArgsConstructor;
-import model.CurrencyCode;
-import model.Purchase;
-import repository.PurchaseRepository;
+import org.example.purchaseprocessingproject.model.CurrencyCode;
+import org.example.purchaseprocessingproject.model.Purchase;
+import org.example.purchaseprocessingproject.repository.PurchaseRepository;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 @RequiredArgsConstructor
 public class PurchaseServiceImpl implements PurchaseService{
 
@@ -27,8 +29,10 @@ public class PurchaseServiceImpl implements PurchaseService{
                 .transactionDate(request.transactionDate())
                 .purchaseAmount(request.amount())
                 .build();
+        System.out.println(purchase);
 
         repository.save(purchase);
+
 
         return purchase.getUniqId();
     }

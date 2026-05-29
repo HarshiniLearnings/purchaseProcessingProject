@@ -1,8 +1,9 @@
 package service;
 
-import controller.PurchaseController;
-import dto.PurchaseRequest;
+import org.example.purchaseprocessingproject.controller.PurchaseController;
+import org.example.purchaseprocessingproject.dto.PurchaseRequest;
 import org.example.purchaseprocessingproject.PurchaseProcessingProjectApplication;
+import org.example.purchaseprocessingproject.service.PurchaseServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
@@ -19,6 +20,7 @@ import java.util.UUID;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(PurchaseController.class)
@@ -32,7 +34,7 @@ public class ControllerTest {
     private ObjectMapper mapper;
 
     @MockitoBean
-    private PurchaseService service;
+    private PurchaseServiceImpl service;
 
     @Test
     void  testCreatePurchase() throws Exception{
@@ -48,6 +50,7 @@ public class ControllerTest {
         mockMvc.perform(post("/api/v1/purchases")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(request)))
+                .andDo(print())
                 .andExpect(status().isCreated());
     }
 
