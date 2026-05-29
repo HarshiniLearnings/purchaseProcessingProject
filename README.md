@@ -1,7 +1,7 @@
 **Purchase Processing**
 
 **Overview**
-This service is a backend REST API application built using:
+This is a backend REST API application built using:
 •	Java 
 •	Spring Boot
 •	Maven
